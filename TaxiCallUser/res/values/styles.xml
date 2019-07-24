@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="TextDefaultBlack"><item name="android:textColor">#000</item>
+<item name="android:textSize">15dp</item>
+</style>
+<style name="TextDefaultWhite"><item name="android:textColor">#fff</item>
+</style>
+<style name="TextTitle" parent="TextDefaultWhite"><item name="android:textSize">14dp</item>
+</style>
+<style name="TextHead" parent="TextDefaultWhite"><item name="android:textSize">20dp</item>
+</style>
+<style name="TextBlackBold" parent="TextDefaultBlack"><item name="android:textStyle">bold</item>
+</style>
+</resources>

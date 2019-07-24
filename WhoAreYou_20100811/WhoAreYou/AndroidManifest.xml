@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.telcoware.whoareyou"
+      android:versionCode="5" android:versionName="1.2.2">
+<application android:label="@string/app_name" android:debuggable="false" android:icon="@drawable/mainicon">
+<activity android:name=".MainActivity" android:label="@string/app_name">
+<intent-filter>
+	<action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+</activity>
+<activity android:label="@string/app_name" android:theme="@android:style/Theme.Translucent" android:name="SearchAndNotiActivity">
+</activity>
+<service android:name="SpamFilterService"></service>
+<receiver android:name="BootCompletedReceiver"><intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"></action>
+</intent-filter>
+</receiver>
+<activity android:name="CallLogActivity"></activity>
+<activity android:name="CallSearchActivity"></activity>
+<activity android:name="ConfigActivity"></activity>
+<activity android:name="CallLogDetailActivity"></activity>
+<activity android:name="IntroActivity"
+	android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" > 
+</activity>
+<activity android:name="MembershipActivity"></activity>
+
+
+
+<activity android:name="ProgressActivity" android:theme="@android:style/Theme.Translucent"></activity>
+<receiver android:name="SmsReceiver">
+<intent-filter android:priority="9999999999">
+<action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+</intent-filter>
+</receiver>
+
+<activity android:name="EasterEggActivity"></activity>
+</application>
+<uses-sdk android:minSdkVersion="7" />
+
+<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+<uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+<uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+</manifest> 

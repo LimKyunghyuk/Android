@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:background="@android:drawable/toast_frame" 
+  	android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="center_vertical|center_horizontal">
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_centerInParent="true">
+<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:src="@drawable/mainicon"></ImageView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name" android:textSize="30sp" android:layout_gravity="center_vertical" android:layout_marginLeft="20px"></TextView>
+</LinearLayout>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp" android:layout_centerInParent="true" android:layout_marginTop="20px" android:text="Contributors"></TextView>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/contributor1" android:textSize="15sp" android:layout_centerInParent="true" android:layout_marginTop="5px"></TextView>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/contributor2" android:textSize="15sp" android:layout_centerInParent="true" android:layout_marginTop="5px"></TextView>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/contributor3" android:textSize="15sp" android:layout_centerInParent="true" android:layout_marginTop="5px"></TextView>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent">
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/contributor4" android:textSize="15sp" android:layout_centerInParent="true" android:layout_marginTop="5px"></TextView>
+</RelativeLayout>
+
+<RelativeLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_gravity="bottom">
+<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/mokavango_logo" android:layout_centerInParent="true" android:layout_marginTop="20px"></ImageView>
+</RelativeLayout>
+
+</LinearLayout>

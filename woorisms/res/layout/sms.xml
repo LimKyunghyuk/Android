@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/TableLayout01" android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:orientation="vertical"
+	android:stretchColumns="0,1">
+
+	<TableRow android:layout_width="fill_parent">
+		<EditText android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_span="2"
+			android:id="@+id/edt_num" android:hint="수신자를 입력하세요."></EditText>
+	</TableRow>
+
+	<TableRow android:layout_weight="1">
+		<EditText android:layout_height="fill_parent"
+			android:layout_width="fill_parent" android:layout_span="2"
+			android:gravity="top" android:id="@+id/edt_main" android:hint="내용을  입력하세요."></EditText>
+	</TableRow>
+
+	<TableRow>
+		<Button android:id="@+id/btn_check" android:layout_height="wrap_content"
+			android:text="맞춤법 검사 " android:layout_weight="1"
+			android:layout_width="fill_parent"></Button>
+		<Button android:layout_height="wrap_content"
+			android:id="@+id/btn_send" android:layout_weight="1"
+			android:layout_width="fill_parent" android:text="전송 "></Button>
+
+	</TableRow>
+
+</TableLayout>

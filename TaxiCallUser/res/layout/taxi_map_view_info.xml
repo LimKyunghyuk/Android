@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:id="@+id/info_linear_layout" android:background="@drawable/taxi_map_info">
+  <TextView   android:layout_width="wrap_content"
+  android:layout_height="wrap_content" android:id="@+id/info_text_dis"/>
+  <ImageView android:layout_width="wrap_content"
+  android:layout_height="wrap_content" android:id="@+id/info_image_class"/>
+</LinearLayout>

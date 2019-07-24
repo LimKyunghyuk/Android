@@ -1,0 +1,20 @@
+1. ToastView를 만들기 위한 customtoast.xml 이 추가되었습니다.
+
+2. SpamFilterService.java 파일에서 
+아래와 같은 라이브러리가 추가 되었습니다.
+
+import com.telcoware.whoareyou.CallLogDb.CallLogs;
+import java.util.Date;
+import android.view.LayoutInflater;
+import android.view.View;
+import java.util.Locale;
+import android.widget.TextView;
+import android.provider.CallLog;
+import android.database.Cursor;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.StringTokenizer;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+
+131번째 라인에서 256번째 라인까지 소스코드가 추가 되었습니다.

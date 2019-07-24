@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout 
+	android:layout_width="fill_parent" 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:id="@+id/CallLogLinearLayout" 
+	android:layout_height="fill_parent" 
+	android:scrollbars="vertical">
+
+	<ScrollView 
+		android:layout_height="fill_parent" 
+		android:layout_width="fill_parent" 
+		android:id="@+id/CallScroll">
+		
+	<TableLayout 
+		android:layout_width="fill_parent" 
+		android:scrollbars="vertical" 
+		android:id="@+id/CallTable" 
+		android:layout_height="fill_parent" 
+		android:stretchColumns="0">
+		
+		<TableRow 
+			android:layout_width="fill_parent" 
+			android:id="@+id/CallRow" android:layout_height="fill_parent" android:visibility="invisible" android:layout_marginTop="10px">
+			
+		<LinearLayout 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:orientation="vertical" android:id="@+id/CallLinear1">
+			<RelativeLayout 
+				android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/CallRelative11" android:layout_marginLeft="5px" android:layout_marginRight="10px">
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:text="01012341234" 
+					android:textStyle="bold" 
+					android:id="@+id/CallNumberText" android:textSize="20sp" android:layout_width="fill_parent" android:layout_toLeftOf="@+id/CallTypeImage"/>
+				<ImageView 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:src="@drawable/icon"
+					android:layout_alignParentRight="true" 
+					android:id="@+id/CallTypeImage" android:layout_marginRight="10px"/>
+			</RelativeLayout>			
+			<RelativeLayout 
+				android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/CallRelative12" android:layout_marginLeft="5px" android:layout_marginRight="10px">
+				<LinearLayout android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:orientation="horizontal" android:layout_width="fill_parent" android:id="@+id/CallLinear121"><ImageView android:id="@+id/CallSpamLevelImage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/level_9" android:layout_marginTop="3px"/><TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Keyword" android:id="@+id/CallSpamKeywordText" android:layout_marginLeft="15px" android:textSize="7sp"/></LinearLayout>
+				<LinearLayout android:layout_height="wrap_content" android:layout_alignParentRight="true" android:id="@+id/CallLinear122" android:layout_width="wrap_content">
+					<TextView android:layout_height="wrap_content" android:text="1 hour ago" android:id="@+id/CallDateText" android:textSize="8sp" android:layout_width="wrap_content"/>
+				</LinearLayout>
+			</RelativeLayout>
+		</LinearLayout>
+		
+		</TableRow>
+	</TableLayout>
+	</ScrollView>
+
+</LinearLayout>

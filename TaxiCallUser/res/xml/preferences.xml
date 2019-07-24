@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" android:orderingFromXml="true">
+
+<CheckBoxPreference android:summaryOff="가까운 순으로 택시를 정렬하지 않습니다." android:title="거리순 정렬" android:key="SORT_DISTANCE" android:summaryOn="가까운 순으로 택시를 정렬합니다." android:summary="가까이 있는 택시가 상위로 오도록 합니다." android:defaultValue="true"></CheckBoxPreference>
+<CheckBoxPreference android:summaryOff="모든 택시를 표시합니다." android:title="카드 택시" android:key="SORT_CARD" android:summaryOn="카드 사용이 가능한 택시만 표시합니다." android:summary="카드 사용이 가능한 택시만 표시합니다." android:defaultValue="false"></CheckBoxPreference>
+<CheckBoxPreference android:defaultValue="false" android:summaryOff="모든 택시를 표시합니다." android:title="모범 택시만 표시" android:key="SORT_DELUXE" android:summaryOn="모범 택시만 표시합니다."></CheckBoxPreference>
+</PreferenceScreen>

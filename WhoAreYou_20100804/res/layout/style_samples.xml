@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >	   
+    <TextView 
+    	style="@style/padded_small"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="For Safe Call..."
+    	/>
+    <TextView 
+    	style="@style/padded_xlarge"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="Spam Zero!!"
+    	/>
+          	
+    	    <TextView 
+    	style="@style/glow"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="^___^"
+    	/>      
+    	<TextView 
+    	style="@style/padded_italics"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="CHOI Y.K."
+    	/>
+    	<TextView 
+    	style="@style/padded_italics"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="SEO D.H."
+    	/>
+    	<TextView 
+    	style="@style/padded_italics"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text="OH H.S."
+    	/>
+    	
+    	    	    <TextView 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:text=" 2010 Telcoware All Right Reserved "
+    	/> 
+    	
+</LinearLayout>

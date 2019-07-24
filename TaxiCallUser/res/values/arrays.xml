@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="PREF_SEARCH_KEY"><item>거리</item>
+<item>모범</item>
+<item>카드 가능</item>
+</string-array>
+<integer-array name="PREF_SEARCH_KEY_IDX"><item>0</item>
+<item>1</item>
+<item>2</item>
+</integer-array>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="wrap_content" android:layout_width="fill_parent" android:gravity="center_vertical" android:background="#fff">
+<LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_weight="1" android:layout_width="fill_parent" android:padding="10dp">
+
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtCallLogDate" android:text="Call Date" style="@style/TextDefaultBlack"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtCallLogTaxiNumber" android:text="Taxi Number" style="@style/TextDefaultBlack"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtCallLogTime" android:text="Call Time" style="@style/TextDefaultBlack"></TextView>
+</LinearLayout><ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/imgCallLogCall" android:src="@drawable/call" android:layout_weight="0"></ImageView>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btnCallLogComment" android:text="Comment" android:layout_weight="0"></Button>
+</LinearLayout>

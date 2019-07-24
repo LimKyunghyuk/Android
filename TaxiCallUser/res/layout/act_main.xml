@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#d0e713">
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_weight="0"
+		android:gravity="center" android:background="#000">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/app_name"
+			style="@style/TextTitle" android:id="@+id/txtMainActTitle"></TextView>
+	</LinearLayout>
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_weight="0">
+		<com.telcoware.taxicalluser.CVHeader
+			android:layout_width="fill_parent" android:layout_height="28dp"></com.telcoware.taxicalluser.CVHeader>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Activity Title"
+			android:layout_centerInParent="true" style="@style/TextHead"
+			android:id="@+id/txtMainActHeader"></TextView>
+	</RelativeLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_weight="0"
+		android:gravity="center">
+
+
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_weight="0" android:background="#fff"
+		 android:layout_height="wrap_content">
+		<LinearLayout android:layout_width="wrap_content"
+			android:layout_weight="1" android:gravity="center_vertical"
+			android:layout_height="fill_parent" android:padding="10dp">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/txtMainCurrentLocation"
+				android:text="Current Location" android:maxLines="2"
+				style="@style/TextDefaultBlack" android:minLines="2"></TextView>
+		</LinearLayout>
+		<LinearLayout android:layout_weight="0" android:gravity="center"
+			android:layout_height="fill_parent" android:layout_width="wrap_content"
+			android:padding="5dp">
+			<ImageView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:src="@drawable/btn_main_loc"
+				android:id="@+id/btnMainSetLoc"></ImageView>
+		</LinearLayout>
+
+	</LinearLayout>
+	<FrameLayout android:layout_height="wrap_content"
+		 android:layout_weight="1"
+		android:layout_width="fill_parent" android:background="@drawable/bg_main">
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/btn_main_quick"
+			android:id="@+id/btnMainQuickCall" android:layout_gravity="center_horizontal"
+			android:paddingTop="49dip"></ImageView>
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/btnMainTaxiMap"
+			android:src="@drawable/btn_main_taxi" android:layout_gravity="center_vertical|right"
+			android:paddingRight="30dip" android:paddingTop="18dip"></ImageView>
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/btn_main_log"
+			android:id="@+id/btnMainCallLog" android:layout_gravity="center_vertical|left"
+			android:paddingLeft="27dip" android:paddingTop="16dip"></ImageView>
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/btn_main_safe"
+			android:id="@+id/btnMainSafeCall" android:layout_gravity="bottom|center"
+			android:paddingBottom="40dip"></ImageView>
+		<!--  </LinearLayout>-->
+	</FrameLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_weight="0"
+		android:padding="3dp" android:background="#fff">
+		<Button android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/btnMainAppInfo"
+			android:text="About Mobile Call"></Button>
+	</LinearLayout>
+</LinearLayout>

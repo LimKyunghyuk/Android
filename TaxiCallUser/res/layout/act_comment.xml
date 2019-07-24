@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent" android:layout_width="fill_parent" android:background="#fff" android:orientation="vertical">
+<LinearLayout android:layout_width="fill_parent" android:layout_weight="0" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtCommentDriver" android:text="Driver Name" style="@style/TextDefaultBlack"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/txtCommentLicense" android:text="License Number" style="@style/TextDefaultBlack"></TextView><RatingBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rtbCommentRating"></RatingBar>
+</LinearLayout>
+
+<LinearLayout android:layout_width="fill_parent" android:padding="20dp" android:layout_height="wrap_content" android:layout_weight="1"><EditText android:layout_height="fill_parent" android:layout_width="fill_parent" android:id="@+id/etxComment" android:hint="택시기사에 대한 평가를 입력하세요." android:maxLength="20"></EditText>
+
+</LinearLayout><LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="0"><Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/btnCommentCommit" android:text="작성 완료"></Button></LinearLayout>
+
+</LinearLayout>

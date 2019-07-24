@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical">
+<LinearLayout android:id="@+id/LinearLayout05" android:layout_width="fill_parent" android:layout_height="100dp">
+<TextView android:id="@+id/TextView01" android:text="탭1 " android:layout_height="fill_parent" android:background="#ffff00" android:layout_weight="1" android:layout_width="wrap_content" android:gravity="center" android:textSize="20dp" android:textColor="#000000"></TextView>
+<TextView android:id="@+id/TextView02" android:text="탭2 " android:layout_height="fill_parent" android:background="#ff0000" android:layout_weight="1" android:layout_width="wrap_content" android:gravity="center" android:textSize="20dp" android:textColor="#000000"></TextView>
+<TextView android:id="@+id/TextView03" android:text="탭3 " android:layout_height="fill_parent" android:background="#ffff00" android:layout_weight="1" android:layout_width="wrap_content" android:gravity="center" android:textSize="20dp" android:textColor="#000000"></TextView>
+</LinearLayout>
+
+<FrameLayout android:id="@+id/FrameLayout01" android:layout_height="fill_parent" android:layout_width="fill_parent">
+<LinearLayout android:id="@+id/LinearLayout02" android:background="#00ff00" android:layout_height="fill_parent" android:layout_width="fill_parent"></LinearLayout>
+<LinearLayout android:id="@+id/LinearLayout03" android:background="#00aa00" android:layout_height="fill_parent" android:layout_width="fill_parent"></LinearLayout>
+<LinearLayout android:id="@+id/LinearLayout04" android:background="#005500" android:layout_height="fill_parent" android:layout_width="fill_parent"></LinearLayout>
+</FrameLayout>
+
+
+</LinearLayout>

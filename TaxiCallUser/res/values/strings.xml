@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">MOBILE CALL</string>
+	<string name="file_preferences">com.telcoware.taxicalluser_prefrences.xml</string>
+	<string name="hello">Hello World, SafeHomeMain!</string>
+	<string name="Setting">설 정</string>
+	<string name="Update_start">위치 전송이 시작 되었습니다.</string>
+	<string name="Update_stop">위치 전송이 정지 되었습니다.</string>
+	<string name="Update_label">안심 귀가 서비스</string>
+	<string name="Get_Location">http://mane.nasse.net/telco/cst_get_children.php
+	</string>
+	<string name="Set_Location">http://mane.nasse.net/telco/cst_loc.php</string>
+	<string name="Join">http://mane.nasse.net/telco/cst_join.php</string>
+	<string name="Regi_Protector">http://mane.nasse.net/telco/cst_regi_protector.php
+	</string>
+	<string name="Del_Protector">http://mane.nasse.net/telco/cst_del_protector.php
+	</string>
+	<string-array name="Setting_time_array">
+		<item>30초</item>
+		<item>1분</item>
+		<item>2분</item>
+		<item>5분</item>
+	</string-array>
+	<string-array name="Setting_set_array">
+		<item>전화번호 변경</item>
+		<item>확인 주기 변경</item>
+	</string-array>
+</resources>

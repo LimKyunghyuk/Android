@@ -1,0 +1,6 @@
+<linearlayout android:layout_height="fill_parent" android:layout_width="fill_parent" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+<textview android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="첫 번째 액티비티 화면입니다.">
+<button android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="두 번째 액티비티 호출" android:id="@+id/launchActivity"></button>
+</textview>
+</linearlayout>
+ 

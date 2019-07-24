@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent" 
+	android:id="@+id/CallSearchScroll">
+<LinearLayout 
+    android:orientation="vertical"    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:scrollbars="vertical">
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:textSize="20sp" android:textStyle="bold" android:layout_margin="10px" android:text="@string/phone_number"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+<EditText
+  android:id="@+id/search_number"
+  android:inputType = "number"
+   android:layout_width="240sp"
+    android:layout_height="wrap_content" />
+<Button
+ android:text="@string/search"
+  android:id="@+id/search_button"
+   android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</LinearLayout>
+<RadioGroup android:id="@+id/radio_group"
+	android:orientation="horizontal"
+	android:layout_gravity="center"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+	<RadioButton android:id="@+id/radio_phone"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:checked="true"
+	android:text="@string/phone" />
+	<RadioButton android:id="@+id/radio_sms"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/sms" />
+</RadioGroup>
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:layout_margin="10px" android:textSize="20sp" android:textStyle="bold" android:text="@string/search_result"/>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_gravity="center"
+  android:layout_width="320sp"
+  android:layout_height="wrap_content" android:background="@android:drawable/toast_frame">
+  <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:fadingEdge="none"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TextView
+  android:id = "@+id/search_spamGradeView"
+  android:layout_width="90sp"
+  android:layout_height="wrap_content"
+  android:textSize="16sp"
+  android:textStyle="bold"
+  android:autoLink="all" />
+  <ImageView
+  android:id = "@+id/search_spamGradeImageView"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" android:layout_marginTop="8px"/>
+  <TextView
+  android:id = "@+id/search_spamGradeTextView"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:textSize="14sp"
+  android:autoLink="all" />
+  </LinearLayout>
+  <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TextView
+  android:id = "@+id/search_firmView"
+  android:layout_width="80sp"
+  android:layout_height="wrap_content"
+  android:textSize="16sp"
+  android:textStyle="bold"
+  android:autoLink="all"/>
+  <TextView
+  android:id = "@+id/search_firmTextView"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:textSize="16sp"
+  android:autoLink="all" />
+  </LinearLayout>
+  <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TextView
+  android:id = "@+id/search_keywordView"
+  android:layout_width="70sp"
+  android:layout_height="wrap_content"
+  android:textSize="16sp"
+  android:textStyle="bold"
+  android:autoLink="all" />
+  <TextView
+  android:id = "@+id/search_keywordTextView"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:textSize="14sp"
+  android:autoLink="all" />
+  </LinearLayout>
+  </LinearLayout>
+</FrameLayout>
+</LinearLayout>
+</ScrollView>

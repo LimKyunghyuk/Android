@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="#fff" android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:orientation="vertical">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_weight="0"
+		android:gravity="center" android:background="#000">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/app_name"
+			style="@style/TextTitle" android:id="@+id/txtTaxiInfoTitle"></TextView>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_weight="0"
+		android:gravity="center">
+		<RelativeLayout android:layout_height="fill_parent"
+			android:layout_width="fill_parent">
+			<com.telcoware.taxicalluser.CVHeader
+				android:layout_width="fill_parent" android:layout_centerInParent="true"
+				android:layout_height="30dp"></com.telcoware.taxicalluser.CVHeader>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_centerInParent="true" style="@style/TextHead"
+				android:id="@+id/txtTaxiInfoHeader" android:text="택시 상세 정보"></TextView>
+		</RelativeLayout>
+
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
+		<ImageView android:id="@+id/imgDriverPic"
+			android:src="@drawable/no_picture" android:padding="20dp" android:layout_width="125dip" android:layout_height="160dip"></ImageView>
+		<LinearLayout android:orientation="vertical"
+			android:layout_height="fill_parent" android:layout_width="fill_parent"
+			android:padding="10dp" android:gravity="center_vertical">
+
+
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:visibility="visible">
+				<ImageView android:layout_width="wrap_content" android:layout_height="30dip" android:id="@+id/imgTaxiInfoRate"></ImageView>
+			
+
+</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="Driver's Name : "
+					android:id="@+id/txtTaxiInfoDriverName" style="@style/TextBlackBold"
+					android:textStyle="bold"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="Driver's Name"
+					style="@style/TextDefaultBlack" android:id="@+id/txtTaxiInfoDriverNameT"
+					android:textStyle="normal"></TextView>
+
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/txtTaxiInfoTaxiNumber"
+					style="@style/TextBlackBold" android:text="Taxi Number"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="Taxi Number"
+					style="@style/TextDefaultBlack" android:id="@+id/txtTaxiInfoTaxiNumberT"></TextView>
+
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/txtTaxiInfoLicense"
+					style="@style/TextBlackBold" android:text="License Number"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" style="@style/TextDefaultBlack"
+					android:text="Driver's License" android:id="@+id/txtTaxiInfoLicenseT"></TextView>
+
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:text="@+id/TextView01"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/txtTaxiInfoModel" style="@style/TextBlackBold"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="Taxi Model"
+					style="@style/TextDefaultBlack" android:id="@+id/txtTaxiInfoModelT"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/txtTaxiInfoType"
+					style="@style/TextBlackBold" android:text="택시 구분 : "></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" style="@style/TextDefaultBlack"
+					android:text="Company Name" android:id="@+id/txtTaxiInfoTypeT"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_weight="1" android:layout_margin="20dp"
+		android:background="@drawable/bg_taxi_comment">
+
+
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/txtTaxiInfoComment"
+				android:text="Driver Comment"></TextView>
+		</LinearLayout>
+		<ListView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/listTaxiInfoComment"
+			android:layout_weight="1" android:cacheColorHint="#00000000"></ListView>
+		
+	</LinearLayout>
+	<Button android:layout_height="wrap_content" android:id="@+id/btnTaxiCall"
+		android:text="Call Taxi" android:layout_width="fill_parent"></Button>
+</LinearLayout>

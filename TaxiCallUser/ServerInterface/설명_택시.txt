@@ -1,0 +1,195 @@
+테스트DB안내
+
+DB관리자 주소 : http://mane.nasse.net/phpmyadmin/
+
+DB테이블
+1. 고객 테이블 : telco_customer	
+2. 평가 테이블 : telco_svc_history
+3. 택시 테이블 : telco_taxi_info
+
+모든 데이타는 String으로 관리 됨
+
+
+< 택시 >  
+
+
+
+1.위치 업데이트 
+
+- 데이터를 넘기기 위한 ArrayList 1개 필요
+
+prmtr.add("http://mane.nasse.net/telco/texi_loc.php");
+prmtr.add("9");				// 운전자 ID
+prmtr.add("123");			// 운전자 x좌표
+prmtr.add("456");			// 운전자 y좌표
+String testStr = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "location"); 
+// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+
+2. Call한 고객의 전화번호 및 고객의 좌표 받아오기
+
+- 데이터를 넘기기 위한 ArrayList 1개 필요
+- 데이터를 요청할 ArrayList 1개 필요
+- 데이터를 받아올 ArrayList 1개 필요
+
+prmtr.add("http://mane.nasse.net/telco/texi_customer_number.php");
+prmtr.add("8");				// 운전자 ID
+
+tagList.add("customer_number");		// TAG
+tagList.add("location_x");		// TAG
+tagList.add("location_y");		// TAG
+
+resultList = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), tagList); 
+// 리턴값
+resultList.get(0);			// 고객 전화번호
+resultList.get(1);			// 고객의 X좌표
+resultList.get(2);			// 고객의 Y좌표
+
+
+
+3. Taxi기사 테이블에서 Call한 고객의 전화번호 삭제하기
+
+prmtr.add("http://mane.nasse.net/telco/texi_cus_number_delete.php");
+prmtr.add("3");				// 운전자 ID
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "texi_cus_number_delete"); 
+// 리턴값 :  삭제된 번호 ( null로 리턴되면 삭제된 것임 )
+
+
+
+4. Taxi가 손님을 받을것인지 받지 않을 것인지( ON/OFF ) 여부 
+ 
+prmtr.add("http://mane.nasse.net/telco/texi_status.php");
+prmtr.add("5");				// 운전자 ID
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "status"); 
+// 리턴값 : 택시 ON/OFF정보 (1/0)
+
+
+
+
+5. Taxi의 ON/OFF 상태 변경
+
+prmtr.add("http://mane.nasse.net/telco/texi_status.php");
+prmtr.add("5");				// 운전자 ID
+prmtr.add("1");				// 1 or 0
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "status"); 
+// 리턴값 : 변경된 택시 ON/OFF정보 ( 지정한 숫자로 바뀌면 됨 )
+
+
+
+--------------------------------- 추가부분 2010.09.08 ---------------------------------------
+6. 회원 조회 ( 이미 가입된 회원인지 찾는다. )
+
+
+prmtr.add("http://mane.nasse.net/telco/texi_start.php");
+prmtr.add("123-134-121");		// 면허번호
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+// 리턴값 : ok / nok ( 가입할 수 있는 회원 / 이미 가입된 회원 ) 
+
+
+
+7. 회원가입
+
+prmtr.add("http://mane.nasse.net/telco/texi_join.php");
+prmtr.add("123-134-1213");		// 면허번호
+prmtr.add("1234");			// 자동차 번호
+prmtr.add("LimKyung");			// 운전자 이름
+prmtr.add("0");				// 개인/모범/회사 ( 0/1/2 )						
+prmtr.add("대한택시");			// 차회사
+prmtr.add("sonata");			// 차종
+prmtr.add("00");			// 연식
+prmtr.add("1");				// 등급
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+
+
+8. 회원정보 수정
+- 면호번호로 검색 후 정보를 수정하기에 면허번호 자제는 수정이 안됨
+- 면허번호를 찾지 못할 경우 nok 리턴
+
+prmtr.add("http://mane.nasse.net/telco/texi_rejoin.php");
+prmtr.add("123-134-1213");		// 면허번호
+prmtr.add("1234");			// 자동차 번호
+prmtr.add("LimKyung");			// 운전자 이름
+prmtr.add("0");				// 개인/모범/회사 ( 0/1/2 )						
+prmtr.add("대한택시");			// 차회사
+prmtr.add("sonata");			// 차종
+prmtr.add("00");			// 연식
+prmtr.add("1");				// 등급
+String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+
+
+--------------------------------- 추가 및 수정부분 2010.09.12 ---------------------------------------
+
+
+1. TEXI DB에 운전자 전화번호 필드 추가
+
+- 택시 가입부분은 이제 모드 웹에서 처리하기 때문에 택시 회원가입부분은 필요없지만 운전자 전화번호를 넣을 수 있게 수정됨
+- 연식의 필드가 char(2)에서 char(4)로 수정
+- class 필드의 용도 : 자동차운행기간 -> 사용자들이 평가하는 운전자 등급  
+	
+	7) 회원가입( 수정버젼 )
+
+	prmtr.add("http://mane.nasse.net/telco/texi_join.php");
+	prmtr.add("123-134-1213");		// 면허번호
+	prmtr.add("1234");			// 자동차 번호
+	prmtr.add("010-0000-0000");		// 운전자 전화번호
+	prmtr.add("LimKyung");			// 운전자 이름
+	prmtr.add("0");				// 개인/모범/회사 ( 0/1/2 )						
+	prmtr.add("대한택시");			// 차회사
+	prmtr.add("sonata");			// 차종
+	prmtr.add("0000");			// 연식
+
+	String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+	// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+--------------------------------- 추가 및 수정부분 2010.09.14 ---------------------------------------
+
+1. TEXI DB에 카드사용가능 필드 추가 ( 수정 )
+
+	
+	7) 회원가입( 수정버젼2 )
+
+	prmtr.add("http://mane.nasse.net/telco/texi_join.php");
+	prmtr.add("123-134-1213");		// 면허번호
+	prmtr.add("1234");			// 자동차 번호
+	prmtr.add("010-0000-0000");		// 운전자 전화번호
+	prmtr.add("LimKyung");			// 운전자 이름
+	prmtr.add("0");				// 개인/모범/회사 ( 0/1/2 )						
+	prmtr.add("대한택시");			// 차회사
+	prmtr.add("sonata");			// 차종
+	prmtr.add("0000");			// 연식
+	(수정부분)prmtr.add("1");				// 카드비허용 / 카드허용 ( 0/1 )
+
+
+	String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+	// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+2. 회원정보 수정에 운전자 전화번호, 카드사용가능 필드 추가 ( 수정 )
+			
+	prmtr.add("http://mane.nasse.net/telco/texi_rejoin.php");
+	prmtr.add("123-134-1222");		// 면허번호
+	prmtr.add("1234");			// 자동차 번호
+	(수정부분)prmtr.add("010-0000-0000");	// 운전자 전화번호
+	prmtr.add("LimKyung");			// 운전자 이름
+	prmtr.add("0");				// 개인/모범/회사 ( 0/1/2 )						
+	prmtr.add("대한택시");			// 차회사
+	prmtr.add("sonata");			// 차종
+	prmtr.add("2009");			// 연식
+	(수정부분)prmtr.add("0");		// 카드비허용 / 카드허용 ( 0/1 )
+			
+	String result = HttpConnect.TagFilter((HttpConnect.postData(prmtr)), "join"); 
+	// 리턴값 : ok / nok ( 성공 / 실패 ) 
+
+
+3. 'Taxi기사 테이블에서 Call한 고객의 전화번호 삭제하기'의 리턴값 변경 ( 수정 )
+
+	(변경전) 리턴값 :  삭제된 번호 ( null로 리턴되면 삭제된 것임 )
+	(변경후) 리턴값 : ok / nok ( 성공 / 실패 ) 

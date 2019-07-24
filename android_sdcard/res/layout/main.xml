@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<EditText android:layout_height="180dip" android:layout_width="fill_parent" android:id="@+id/txtData" android:text="Enter some data here..."></EditText>
+<Button android:layout_height="40dip" android:layout_width="fill_parent" android:id="@+id/btnWriteSDFile" android:text="1. Write SD File"></Button>
+<Button android:layout_height="40dip" android:layout_width="fill_parent" android:id="@+id/btnClearScreen" android:text="2. Clear Screan"></Button>
+<Button android:layout_height="40dip" android:layout_width="fill_parent" android:id="@+id/btnReadSDFile" android:text="3. Read SD File"></Button>
+<Button android:layout_width="fill_parent" android:layout_height="40dip" android:id="@+id/btnClose" android:text="4. Clear"></Button>
+</LinearLayout>
