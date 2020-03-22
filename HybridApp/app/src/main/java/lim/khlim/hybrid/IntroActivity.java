@@ -8,13 +8,16 @@ import android.os.Handler;
 
 public class IntroActivity extends AppCompatActivity {
 
+    public final static long INTRO_PASS_TIME = 300; // ms
+
     Handler handler = new Handler();
     Runnable r = new Runnable() {
         @Override
-        public void run() { // 4초뒤에 다음화면(MainActivity)으로 넘어가기 Handler 사용
+        public void run() { // INTRO_PASS_TIME 뒤에 다음화면(MainActivity)으로 넘어가기 Handler 사용
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent); // 다음화면으로 넘어가기
-            finish(); // Activity 화면 제거
+            startActivity(intent);                                      // 다음화면으로 넘어가기
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);   // 애니메이션 효과 적용
+            finish();                                                   // Activity 화면 제거
         }
     };
 
@@ -28,14 +31,14 @@ public class IntroActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // 다시 화면에 들어어왔을 때 예약 걸어주기
-        handler.postDelayed(r, 2000); // 4초 뒤에 Runnable 객체 수행
+        handler.postDelayed(r, INTRO_PASS_TIME); // INTRO_PASS_TIME 뒤에 Runnable 객체 수행
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // 화면을 벗어나면, handler 에 예약해놓은 작업을 취소하자
-        handler.removeCallbacks(r); // 예약 취소
+
+        handler.removeCallbacks(r); // 화면을 벗어나면 handler 취소
     }
 
 }
