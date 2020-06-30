@@ -1,8 +1,17 @@
 package lim.khlim.hybrid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.util.Log;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -18,6 +27,8 @@ import android.content.pm.PackageManager;
 
 import android.webkit.DownloadListener;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -27,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
     private WebSettings webViewSetting; // 웹뷰 셋팅
     private String webUrlLocal = "http://appstore.lottechilsung.co.kr/nologin.sm"; // url
     //private String webUrlLocal = "file:///android_asset/www/playground/index.html";
+    long downloadID;
+
+    String filePath;
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,54 +82,56 @@ public class MainActivity extends AppCompatActivity {
                                         String contentDisposition, String mimeType,
                                         long contentLength) {
 
-                Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), contentDisposition, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), contentDisposition, Toast.LENGTH_SHORT).show();
 
-               // DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                //
+                Log.d("HYBRID", "url : " + url);
+                Log.d("HYBRID", "contentDisposition : " + contentDisposition);
+                Log.d("HYBRID", "mimeType : " + mimeType);
+                Log.d("HYBRID", "contentLength : " + contentLength);
+
+                loading();
 
                 Uri urlToDownload = Uri.parse(url);
                 List<String> pathSegments = urlToDownload.getPathSegments();
+
+                for(String s : pathSegments){
+                    Log.d("HYBRID", "s : " + s);
+                }
 
                 DownloadManager.Request request = new DownloadManager.Request(urlToDownload);
 
                 request.setTitle("앱 다운로드");
                 request.setDescription("ooo 입니다.");
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, pathSegments.get(pathSegments.size()-1));
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).mkdirs();
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
+
+                String[] fileName = url.split("=");
+
+                for(String f : fileName){
+                    Log.d("HYBRID", "f : " + f);
+                }
+
+                Log.d("HYBRID", "fileName : " + fileName[fileName.length-1]);
+
+                // Download 폴더에 저장
+                // request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName[fileName.length-1]);
+
+
+                // storage/emulated/0/Android/data/lim.khlim.hybrid/files/Download 폴더에 저장
+                File f = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+                request.setDestinationInExternalPublicDir(f.getAbsolutePath(), fileName[fileName.length-1]);
+
+                filePath = f.getAbsolutePath() + "/" + fileName[fileName.length-1];
+
+                Log.d("HYBRID", "path : " + filePath);
+
 
                 DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-                dm.enqueue(request);
 
-               // long latestId = downloadManager.enqueue(request);
-                //downloadUrl.setText("");
-
-                //
+                downloadID = dm.enqueue(request);
 
 
-
-
-
-
-
-/*
-
-                request.setMimeType(mimeType);
-                String cookies = CookieManager.getInstance().getCookie(url);
-                request.addRequestHeader("cookie", cookies);
-                request.addRequestHeader("User-Agent", userAgent);
-                request.setDescription("Downloading File...");
-                request.setTitle(URLUtil.guessFileName(url, "123.apk", mimeType));
-                //request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(
-                                url, contentDisposition, mimeType));
-                DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-                dm.enqueue(request);
-                Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
-
- */
+                loadingEnd();
             }});
 
 
@@ -121,5 +139,98 @@ public class MainActivity extends AppCompatActivity {
 
         webView.loadUrl(webUrlLocal);  // url 주소
 
+        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(onDownloadComplete);
+    }
+
+    public void loading() {
+        //로딩
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        progressDialog = new ProgressDialog(MainActivity.this);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setMessage("잠시만 기다려 주세요");
+                        progressDialog.show();
+                    }
+                }, 0);
+    }
+
+    public void loadingEnd() {
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                }, 0);
+    }
+
+    private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            //Checking if the received broadcast is for our enqueued download by matching download id
+            if (downloadID == id) {
+
+                // 다운로드한 파일 실행
+                Toast.makeText(MainActivity.this, "Download Completed", Toast.LENGTH_SHORT).show();
+
+                File apkFile = new File(filePath);
+
+
+                Uri uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider",apkFile);
+                Intent executeApp = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "application/vnd.android.package-archive");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                context.startActivity(intent);
+
+
+/*
+                Intent executeApp = new Intent(Intent.ACTION_VIEW);
+
+
+
+                    File apkFile = new File(filePath);
+                    Uri apkUri = Uri.fromFile(apkFile);
+
+
+                    Log.d("HYBRID", ">>f path" + filePath);
+
+
+
+
+                    executeApp.setDataAndType(apkUri,"application/vnd.android.package-archive");
+                    executeApp.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    startActivity(executeApp);
+*/
+
+                /*
+                DownloadManager dm = new DownloadManager(context);
+
+                openDownloadedFile();
+                Intent executeApp = new Intent();
+
+
+
+                executeApp.setDataAndType(path,"application/vnd.android.package-archive");
+
+                startActivity(executeApp);
+*/
+
+
+            }
+        }
+    };
+
+
 }
