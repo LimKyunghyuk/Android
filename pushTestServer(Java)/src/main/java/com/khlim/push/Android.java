@@ -1,27 +1,64 @@
 package main;
 
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.json.simple.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+//import java.util.Properties;
 
 public class Android implements Http{
 
-    final static String url2 = "https://fcm.googleapis.com/fcm/send";
-    final static String accessToken = "key=AAAAk2yEJ7w:APA91bFOK2QYz0PoRRgebr8YzIy9rThlfQ03PWCROsOG-48EsOSETMvOeXpmGgqWvJu70y7rtlo7WDGvdgGfLdpdoHwnMQc0xyRFr5gATgMYHy_IjTh-xArC7394zRihV1e7DwrroVuG";
+    final static String properties = "config.properties";
+    String fcmUrl;
+    String accessToken;
+
+//    String fcmUrl = "https://fcm.googleapis.com/fcm/send";
+//    String accessToken = "key=AAAAk2yEJ7w:APA91bFOK2QYz0PoRRgebr8YzIy9rThlfQ03PWCROsOG-48EsOSETMvOeXpmGgqWvJu70y7rtlo7WDGvdgGfLdpdoHwnMQc0xyRFr5gATgMYHy_IjTh-xArC7394zRihV1e7DwrroVuG";
 
     HttpURLConnection http;
 
     Android(){
+/*
+        Properties properties = new Properties();
 
         try {
-            URL url = new URL(url2);
+
+            FileInputStream fis = new FileInputStream(resource);
+            properties.load(fis);
+
+            fcmUrl = properties.getProperty("android.fcmUrl");
+            accessToken = properties.getProperty("android.accessToken");
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
+
+        // http://commons.apache.org/
+        Configurations configs = new Configurations();
+        try {
+            System.out.println(properties);
+            Configuration config = configs.properties(new File(properties));
+            fcmUrl = config.getString("android.fcmUrl");
+            accessToken = config.getString("android.accessToken");
+
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+
+
+        URL url = null;
+        try {
+
+            url = new URL(fcmUrl);
             http = (HttpURLConnection) url.openConnection();
 
         } catch (MalformedURLException e) {
@@ -30,6 +67,9 @@ public class Android implements Http{
             e.printStackTrace();
         }
 
+
+        System.out.println("fcmUrl : " + fcmUrl);
+        System.out.println("accessToken : " + accessToken);
 
     }
 
@@ -51,7 +91,6 @@ public class Android implements Http{
 
             http.setRequestProperty("Authorization", accessToken);
             http.setRequestProperty("Content-Type", "application/json; UTF-8");
-
     }
 
     @Override
@@ -68,9 +107,6 @@ public class Android implements Http{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
     String setReturn(){
@@ -86,9 +122,9 @@ public class Android implements Http{
                     sb.append(line).append("\n");
                 }
                 br.close();
-//                System.out.println("" + sb.toString());
+                System.out.println("1>>" + sb.toString());
             } else {
-                System.out.println(http.getResponseMessage());
+                System.out.println("2>>" + http.getResponseMessage());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,15 +137,15 @@ public class Android implements Http{
     public String send(String target, String title, String body) {
         setHttpHeader();
 
-        JSONObject json = new JSONObject();
+
 
         JSONObject notification = new JSONObject();
-
         notification.put("title",title);
         notification.put("message","알림 내용");
         notification.put("body",body);
         notification.put("sound","default");
 
+        JSONObject json = new JSONObject();
         json.put("to", target);
         json.put("notification", notification);
 
