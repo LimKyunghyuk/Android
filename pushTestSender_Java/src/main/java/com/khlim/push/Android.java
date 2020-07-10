@@ -13,11 +13,14 @@ import java.net.URL;
 
 public class Android implements Http{
 
+    final static long TIME_WAIT = 1000L;
     final static String properties = "config.properties";
+
+    private URL url;
+    private HttpURLConnection http;
+
     String fcmUrl;
     String accessToken;
-
-    HttpURLConnection http;
 
     public Android(){
 
@@ -33,11 +36,9 @@ public class Android implements Http{
         }
 
 
-        URL url = null;
         try {
 
             url = new URL(fcmUrl);
-            http = (HttpURLConnection) url.openConnection();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -53,21 +54,27 @@ public class Android implements Http{
     @Override
     public void httpHeader() {
 
-            http.setConnectTimeout(5000);   // 서버 연결 Timeout
-            http.setReadTimeout(5000);      // InputStream 읽는 Timeout
+        try {
+            http = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            try {
-                http.setRequestMethod("POST");
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            }
-            http.setDoInput(true);
-            http.setDoOutput(true);
-            http.setUseCaches(false);
-            http.setDefaultUseCaches(false);
+        http.setConnectTimeout(1000);   // 서버 연결 Timeout
+        http.setReadTimeout(1000);      // InputStream 읽는 Timeout
 
-            http.setRequestProperty("Authorization", accessToken);
-            http.setRequestProperty("Content-Type", "application/json; UTF-8");
+        try {
+            http.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        http.setDoInput(true);
+        http.setDoOutput(true);
+        http.setUseCaches(false);
+        http.setDefaultUseCaches(false);
+
+        http.setRequestProperty("Authorization", accessToken);
+        http.setRequestProperty("Content-Type", "application/json; UTF-8");
     }
 
     @Override
@@ -113,6 +120,8 @@ public class Android implements Http{
     @Override
     public String sendHttp(String target, String title, String body) {
 
+        String retMsg;
+
         httpHeader();
 
         JSONObject notification = new JSONObject();
@@ -128,7 +137,17 @@ public class Android implements Http{
 
         httpBody(json.toJSONString());
 
-        return setReturn();
+        retMsg = setReturn();
+
+        try {
+            Thread.sleep(TIME_WAIT);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return retMsg;
     }
 
 
