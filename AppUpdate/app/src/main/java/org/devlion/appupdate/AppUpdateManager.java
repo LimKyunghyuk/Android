@@ -21,13 +21,17 @@ public class AppUpdateManager extends AsyncTask<String, Integer, Boolean> {
     public static final String fileUrl = "http://yorsild.dothome.co.kr/app.apk";
 
     private Context mContext = null ;
-
+    File apk;
     OnEvent onEvent;
     File PATH_INNER_STORAGE;
-    AppUpdateManager(File file, OnEvent onEvent){
+
+    Context context;
+    AppUpdateManager(Context context, OnEvent onEvent){
         this.onEvent = onEvent;
-        this.PATH_INNER_STORAGE = file;
+//        this.PATH_INNER_STORAGE = file;
+        this.context = context;
     }
+
 
     // #1 in main thread
     @Override
@@ -40,16 +44,19 @@ public class AppUpdateManager extends AsyncTask<String, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(String... strings) {
         Log.d("APP_UPDATE", "doInBackground()");
+        /*
         File dir = new File(savePath);
         //상위 디렉토리가 존재하지 않을 경우 생성
         if (!dir.exists()) {
             dir.mkdirs();
         }
+*/
+
 
         String fileUrl = "http://yorsild.dothome.co.kr/app.apk";
 //        String fileUrl = "http://yorsild.dothome.co.kr/img.png";
 
-        localPath = savePath + "app.apk";
+//        localPath = savePath + "app.apk";
 
 
         Log.d("APP_UPDATE", "localPath: " + localPath);
@@ -69,11 +76,15 @@ public class AppUpdateManager extends AsyncTask<String, Integer, Boolean> {
             InputStream is = new BufferedInputStream(url.openStream(), 8192);
 
 //            File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), imageFileName);
-            File file = new File(PATH_INNER_STORAGE, "app.apk");
+//            apk = new File(PATH_INNER_STORAGE, "app.apk");
+
+            apk = new File(context.getFilesDir(), "app.apk");
+
+            Log.d("APP_UPDATE", "apk1 : " + apk);
 
 //            File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), imageFileName);
 
-            OutputStream outStream = new FileOutputStream(file);
+            OutputStream outStream = new FileOutputStream(apk);
 
 
 //            File file = new File(localPath);
@@ -113,7 +124,6 @@ public class AppUpdateManager extends AsyncTask<String, Integer, Boolean> {
     // 메인 UI 스레드에서 실행할 onProgressUpdate() 메서드를 구현
     @Override
     protected void onProgressUpdate(Integer... values) {
-        Log.d("APP_UPDATE", "onProgressUpdate()");
         onEvent.onProgressUpdate(values[0]);
     }
 
@@ -121,11 +131,13 @@ public class AppUpdateManager extends AsyncTask<String, Integer, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         Log.d("APP_UPDATE", "onPostExecute()");
-        onEvent.onPostExecute();
+        onEvent.onPostExecute(apk);
     }
 
     String savePath = Environment.getExternalStorageDirectory() + File.separator + "temp/";
     String localPath;
+
+
 
 
 }
